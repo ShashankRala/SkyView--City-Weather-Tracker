@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyView: City Weather Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<h1>hello App</h1>
+
+<!-- Background Video -->
+<video autoplay muted loop id="backgroundVideo">
+    <source src="your-video.mp4" type="video/mp4"> <!-- Make sure to add the correct video file path -->
+    Your browser does not support the video tag.
+</video>
+
+<!-- Content Section -->
+<div class="mainContainer">
+    <h2>Technologies Used:</h2>
+    <p>HTML, CSS, JS, Java, Servlet, JSP, OpenWeather API</p>
+    <form action="MyServlet" method="post" class="searchInput">
+        <input type="text" placeholder="Enter City Name" id="searchInput" value="New Delhi" name="city"/>
+        <button id="searchButton"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+</div>
+
 </body>
 </html>
