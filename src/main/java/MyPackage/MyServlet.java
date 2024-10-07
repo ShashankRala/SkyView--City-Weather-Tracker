@@ -43,7 +43,7 @@ public class MyServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String inputData = request.getParameter("userInput");
-        String apiKey = "9d48f3cab07b72d3b20833669aacc479";
+        String apiKey = "your_new_api_key";
 
         // Get the city from the form input
         String city = request.getParameter("city");
