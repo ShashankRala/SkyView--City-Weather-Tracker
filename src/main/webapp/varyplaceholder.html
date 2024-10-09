@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+        /* Input container to hold the input field and placeholder */
+        .input-container {
+            position: relative;
+            width: 300px;
+            height: 40px; /* Fix the height of the container */
+            overflow: hidden; /* Ensure content stays within the box */
+        }
+
+        /* The actual input field */
+        input {
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        /* Placeholder animation */
+        .input-container::before {
+            content: attr(data-placeholder); /* Placeholder text */
+            position: absolute;
+            top: 50%; /* Start from the center */
+            left: 10px; /* Align with input padding */
+            font-size: 16px;
+            color: grey;
+            pointer-events: none; /* Make sure it doesn't interfere with user input */
+            transform: translateY(-50%); /* Vertically center the placeholder text */
+            opacity: 0; /* Start invisible */
+            transition: none;
+        }
+
+        /* Placeholder enters (comes from above inside the input box) */
+        .animate-in::before {
+            animation: slideIn 0.5s forwards; /* Slide in from hidden area */
+        }
+
+        /* Placeholder exits (moves down inside the input box and disappears) */
+        .animate-out::before {
+            animation: slideOut 0.5s forwards; /* Slide out down */
+        }
+
+        /* Keyframes for the placeholder sliding in from above */
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-100%); /* Start just above the input box */
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(-50%); /* End at the center of the input box */
+            }
+        }
+
+        /* Keyframes for the placeholder sliding out down */
+        @keyframes slideOut {
+            0% {
+                opacity: 1;
+                transform: translateY(-50%); /* Start at the center */
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100%); /* Move down to hidden below */
+            }
+        }
+    </style>
+</head>
+<body>
+ <form>
+        <div class="input-container" data-placeholder="Enter your email">
+            <input type="text" id="inputField">
+        </div>
+    </form>
+
+    <script>// Array of placeholder strings
+        const placeholders = [
+            'Search for "Milk"',
+            'Search for "Sugar"',
+            'Search for "Tea Powder"',
+            'Search for "Cookies"'
+        ];
+        
+        let index = 0; // To track the current placeholder
+        
+        // Get the input container element
+        const inputContainer = document.querySelector('.input-container');
+        
+        // Function to change the placeholder every 2.5 seconds with animations
+        function changePlaceholder() {
+            // First, animate the placeholder out
+            inputContainer.classList.remove('animate-in');
+            inputContainer.classList.add('animate-out');
+        
+            // After 0.5 seconds (after the exit animation), change the placeholder
+            setTimeout(() => {
+                // Update the placeholder text
+                inputContainer.setAttribute('data-placeholder', placeholders[index]);
+        
+                // Switch to the entering animation
+                inputContainer.classList.remove('animate-out');
+                inputContainer.classList.add('animate-in');
+        
+                // Update the index and loop back to the beginning
+                index = (index + 1) % placeholders.length;
+            }, 500); // Matches the exit animation duration
+        }
+        
+        // Set an interval to change the placeholder every 2.5 seconds (2500 milliseconds)
+        setInterval(changePlaceholder, 2500);
+        
+        // Call the function initially to set the first placeholder
+        changePlaceholder();
+        </script>
+
+</body>
+</html>
