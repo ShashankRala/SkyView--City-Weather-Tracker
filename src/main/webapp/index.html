@@ -20,11 +20,37 @@
 <div class="mainContainer">
     <h2>Technologies Used:</h2>
     <p>HTML, CSS, JS, Java, Servlet, JSP, OpenWeather API</p>
-    <form action="MyServlet" method="post" class="searchInput">
-        <input type="text" placeholder="Enter City Name" id="searchInput" value="" name="city"/>
-        <button id="searchButton"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <form action="MyServlet" method="post" class="searchInput" onsubmit="return validate()">
+        <input type="text" placeholder="Enter City Name" id="searchInput" value="" oninput="animations()" name="city"/>
+        <button id="searchButton" type="submit"><i class="fa-solid fa-magnifying-glass" ></i></button>
     </form>
 </div>
-
+ <script>
+      let animation;
+ 	function animations(){
+ 		clearTimeout(animation);
+ 		animation = setTimeout(change1, 200); 
+ 		
+ 	}
+ 	function validate(){
+ 		let submit= document.getElementById("searchInput").value;
+ 		if(submit==="")
+ 			{
+ 			   alert("please enter city name");
+ 			  return false;
+ 			}
+ 		 return true;
+ 		
+ 	}
+ 	
+ 	
+ 
+ function change1(){
+	  let  input=document.getElementById("searchInput");
+	  let text = input.value;
+	  input.value= text.charAt(0).toUpperCase()+text.slice(1).toLowerCase();
+}
+    
+    </script>
 </body>
 </html>

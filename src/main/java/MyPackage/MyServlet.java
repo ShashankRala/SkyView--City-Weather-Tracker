@@ -91,7 +91,7 @@ public class MyServlet extends HttpServlet {
         
         // Set the data as request attributes (for sending to the jsp page)
         request.setAttribute("date", date);
-        request.setAttribute("city", city);
+        request.setAttribute("city", city);//
         request.setAttribute("temperature", temperatureCelsius);
         request.setAttribute("weatherCondition", weatherCondition); 
         request.setAttribute("humidity", humidity);    
